@@ -1,6 +1,6 @@
-# shortest-path-problem
+# Shortest-Path Problem
 
-This project is to demonstrate implementations and applications of shortest-path (SP) algorithms (mainly label-correcting algorithms). 
+This project is to demonstrate implementations and applications of shortest-path (SP) algorithms (mainly modified label-correcting (MLC) algorithms). 
 
 It will include the following sub-projects.
 
@@ -8,12 +8,11 @@ It will include the following sub-projects.
 2. Parallel implementation of the all-pair shortest-path (APSP) aglorithms;
 3. Implementation of k-shortest-paths (KSP) algorithm (i.e., Yen's algorithm);
 4. Static User Equilibrium (UE) Traffic Assignment using Frank-Wolfe algorithm;
-5. Static System Optimum (SO) Traffic Assignment using Lagrangian Relexation.
 
 Some others might include implemenations of heaps suitable for SP algorithms (i.e, with decrease-key(h, newval, i) operation/iterface) to further improve the performances of SP algorithms. Spcifically, 
 
-6. implementation of binary heap;
-7. implementation of Fibonacci heap.
+1. Implementation of binary heap;
+2. Implementation of Fibonacci heap.
 
 Three major goals are made to this project.
 
