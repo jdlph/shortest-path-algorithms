@@ -1,14 +1,12 @@
-# Shortest-Path Problem
+# Shortest Path Algorithms
 
-This project is to demonstrate implementations and applications of shortest-path (SP) algorithms (mainly modified label-correcting (MLC) algorithms). 
-
-It will include the following sub-projects.
+This project is to demonstrate implementations and applications of shortest-path (SP) algorithms. It will include the following sub-projects.
 
 1. Efficient implementations of shortest-path algorithms through selecting proper data structures;
 2. Parallel implementation of the all-pair shortest-path (APSP) aglorithms;
 3. Implementation of k-shortest-paths (KSP) algorithm (i.e., Yen's algorithm);
-4. Static User Equilibrium (UE) Traffic Assignment using Frank-Wolfe algorithm;
-5. Minimum Cost Flow Problem with capacity constraint using Lagrangian Relaxation.
+4. Solve Static User Equilibrium (UE) Traffic Assignment using Frank-Wolfe algorithm;
+5. Solve Capacitiated Minimum Cost Flow Problem using Lagrangian Relaxation.
 
 Some others might include implemenations of heaps suitable for SP algorithms (i.e, with decrease-key(h, newval, i) operation/iterface) to further improve the performances of SP algorithms. Specifically, 
 
