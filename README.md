@@ -8,8 +8,9 @@ It will include the following sub-projects.
 2. Parallel implementation of the all-pair shortest-path (APSP) aglorithms;
 3. Implementation of k-shortest-paths (KSP) algorithm (i.e., Yen's algorithm);
 4. Static User Equilibrium (UE) Traffic Assignment using Frank-Wolfe algorithm;
+5. Minimum Cost Flow Problem with capacity constraint using Lagrangian Relaxation.
 
-Some others might include implemenations of heaps suitable for SP algorithms (i.e, with decrease-key(h, newval, i) operation/iterface) to further improve the performances of SP algorithms. Spcifically, 
+Some others might include implemenations of heaps suitable for SP algorithms (i.e, with decrease-key(h, newval, i) operation/iterface) to further improve the performances of SP algorithms. Specifically, 
 
 1. Implementation of binary heap;
 2. Implementation of Fibonacci heap.
