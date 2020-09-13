@@ -13,7 +13,6 @@ from time import time
 import heapq
 import collections
 import SimpleDequeC
-import SimpleDequeCPP
 from classes import SimpleDequePy
 from utilities import MAX_LABEL, dist_apsp, pred_apsp, \
                       GetNode, GetLink, GetNextNodeID, GetNumNodes
@@ -30,7 +29,6 @@ def CalculateSSSPFIFOI(srcNodeID, dist, pred):
     selist = []
     selist.append(srcNodeID)
     # label correcting
-    global num
     while selist:
         i = selist.pop(0)
         pNode = GetNode(i)
@@ -40,7 +38,6 @@ def CalculateSSSPFIFOI(srcNodeID, dist, pred):
             if dist[j] > dist[i] + pLink.GetLen():
                 dist[j] = dist[i] + pLink.GetLen()
                 pred[j] = i
-                num += 1 
                 if j not in selist:
                     selist.append(j)
 
@@ -219,11 +216,12 @@ def CalculateAPSP(method='dij'):
         1. repeated Single-Source Shortest Path Algorithms
         2. Floyd-Warshall Algorithm
     """
+    st = time()
+
     # initialization
     numNode = GetNumNodes()
     dist_apsp = [[MAX_LABEL]*numNode for i in range(numNode)]
     pred_apsp = [[-1]*numNode for i in range(numNode)]
-    st = time()
 
     if not method or method.lower()=='dij':
         # heap
@@ -233,11 +231,10 @@ def CalculateAPSP(method='dij'):
             CalculateSSSPDijkstraI(i, numNode, dist_apsp[i], pred_apsp[i])
             # CalculateSSSPDijkstraII(i, dist_apsp[i], pred_apsp[i], h)
     elif method.lower() == 'deq':
-        # double queue
+        # deque
         deq = collections.deque()
         # deq = SimpleDequePy(numNode)
         # deq = SimpleDequeC.deque(numNode)
-        # deq = SimpleDequeCPP.deque(numNode)
         for i in range(numNode):
             # CalculateSSSPDEQI(i, numNode, dist_apsp[i], pred_apsp[i])
             CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i], deq)
