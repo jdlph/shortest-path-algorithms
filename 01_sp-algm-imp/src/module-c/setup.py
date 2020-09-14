@@ -3,7 +3,7 @@ import os, sys
 from distutils.core import setup, Extension
 
 sfc_module = Extension(
-    'SimpleDequeC', sources = ['module-c.c']
+    'SimpleDequeC', sources = ['module.c']
     )
 
 setup(

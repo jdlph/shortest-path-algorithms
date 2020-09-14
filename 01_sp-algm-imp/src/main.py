@@ -5,11 +5,11 @@
 
 
 from utilities import ReadLinks
-from spalgorithms import CalculateAPSP
+from spalgm import CalculateAPSP
 
 
 def main():
-    ReadLinks("C:/dev/spp/data/ShrkLink.txt", '\t')
+    ReadLinks('01_sp-algm-imp/data/link.csv')
     CalculateAPSP('dij')
 
 

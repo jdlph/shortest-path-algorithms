@@ -32,7 +32,7 @@ def ReadLinks(fileName, delimiter_=','):
 
     with open(fileName) as f:
         # skip the header
-        # next(f)
+        next(f)
         csvf = csv.reader(f, delimiter=delimiter_)
         for r in csvf:
             linkID = int(r[0])
