@@ -161,7 +161,7 @@ def CalculateSSSPDijkstraI(srcNodeID, numNode, dist, pred):
         selist.remove(i)
         status[i] = False
         pNode = GetNode(i)
-        for linkIDX in pNode.GetOutgoingLinksYield():
+        for linkIDX in pNode.GetOutgoingLinks():
             pLink = GetLink(linkIDX)
             j = pLink.GetDestNodeID()
             if dist[j] > dist[i] + pLink.GetLen():
@@ -225,11 +225,11 @@ def CalculateAPSP(method='dij'):
 
     if not method or method.lower()=='dij':
         # heap
-        # h = []
-        # heapq.heapify(h)
+        h = []
+        heapq.heapify(h)
         for i in range(numNode):
-            CalculateSSSPDijkstraI(i, numNode, dist_apsp[i], pred_apsp[i])
-            # CalculateSSSPDijkstraII(i, dist_apsp[i], pred_apsp[i], h)
+            # CalculateSSSPDijkstraI(i, numNode, dist_apsp[i], pred_apsp[i])
+            CalculateSSSPDijkstraII(i, dist_apsp[i], pred_apsp[i], h)
     elif method.lower() == 'deq':
         # deque
         deq = collections.deque()
@@ -240,8 +240,8 @@ def CalculateAPSP(method='dij'):
             CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i], deq)
     elif method.lower() == 'fifo':
         for i in range(numNode):
-            CalculateSSSPFIFOI(i, dist_apsp[i], pred_apsp[i])
-            # CalculateSSSPFIFOII(i, numNode, dist_apsp[i], pred_apsp[i])
+            # CalculateSSSPFIFOI(i, dist_apsp[i], pred_apsp[i])
+            CalculateSSSPFIFOII(i, numNode, dist_apsp[i], pred_apsp[i])
     elif method.lower() == 'fw':
         # do nothing
         print("not implemented yet")

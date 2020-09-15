@@ -6,8 +6,11 @@
 
 class Node:
     
-    def __init__(self, nodeID):
+    def __init__(self, nodeID, nodeIDEXT):
+        # internal node id used for sp calculation
         self.id = nodeID
+        # external node id defined by user/input file
+        self.idEXT = nodeIDEXT
         self.outgoingLinks = []
     
     def AddOutgoingLinks(self, linkID):
@@ -16,18 +19,21 @@ class Node:
     def GetOutgoingLinks(self):
         return self.outgoingLinks
 
-    def GetOutgoingLinksYield(self):
+    def GetOutgoingLinksIter(self):
         for i in self.outgoingLinks:
             yield i
 
 
 class Link:
     
-    def __init__(self, linkID, origNodeID_, destNodeID_, linkLen_):
+    def __init__(self, linkID, linkIDEXT, origNodeID_, destNodeID_, linkLen_):
+        # internal node id used for sp calculation
         self.id = linkID
+        # external node id defined by user/input file
+        self.idEXT = linkIDEXT
         self.origNodeID = origNodeID_
         self.destNodeID = destNodeID_
-        self.linkLen = linkLen_/100
+        self.linkLen = linkLen_
     
     def GetOrigNodeID(self):
         return self.origNodeID
