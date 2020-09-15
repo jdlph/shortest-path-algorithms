@@ -249,4 +249,4 @@ def CalculateAPSP(method='dij'):
         raise Exception('Please choose correct shortest path algorithm: '
                         +'dij; deq; fifo; fw.')
     
-    print('Processing time for SPP\t\t: {0: .2f}'.format(time() - st))
+    print('Processing time for SPP\t: {0: .2f}'.format(time() - st)+' s.')

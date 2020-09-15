@@ -104,7 +104,8 @@ def GetInternalNodeID(nodeIDEXT):
     try:
         return _map_ext_int[nodeIDEXT]
     except KeyError:
-        return None
+        raise Exception('INCONSISTENCY FOUND between LINK and NODE FILES: '
+                        +'Node '+str(nodeIDEXT)+' NOT EXIST in NODE FILE!!')
 
 
 def GetNextNodeID(nodes, dist):

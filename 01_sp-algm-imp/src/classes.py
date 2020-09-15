@@ -9,7 +9,7 @@ class Node:
     def __init__(self, nodeID, nodeIDEXT):
         # internal node id used for sp calculation
         self.id = nodeID
-        # external node id defined by user/input file
+        # external node id defined by user or input file
         self.idEXT = nodeIDEXT
         self.outgoingLinks = []
     
@@ -27,9 +27,9 @@ class Node:
 class Link:
     
     def __init__(self, linkID, linkIDEXT, origNodeID_, destNodeID_, linkLen_):
-        # internal node id used for sp calculation
+        # internal link id used for sp calculation
         self.id = linkID
-        # external node id defined by user/input file
+        # external link id defined by user or input file
         self.idEXT = linkIDEXT
         self.origNodeID = origNodeID_
         self.destNodeID = destNodeID_
@@ -46,10 +46,10 @@ class Link:
 
 
 class SimpleDequePy:
-    """ special implemenation of deque using array 
+    """ Special implemenation of deque using fix-length array 
     
     the interface utilized for shortest-path algorithms is exactly the same as 
-    that in built-in deque.
+    the built-in deque.
     """
     
     def __init__(self, size_):
