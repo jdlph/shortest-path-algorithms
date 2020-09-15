@@ -4,12 +4,13 @@
 """
 
 
-from utilities import ReadLinks
+from utilities import ReadLinks, ReadNodes
 from spalgm import CalculateAPSP
 
 
 def main():
-    ReadLinks('01_sp-algm-imp/data/link.csv')
+    ReadNodes('01_sp-algm-imp/data/node_chicago.csv')
+    ReadLinks('01_sp-algm-imp/data/link_chicago.csv')
     CalculateAPSP('dij')
 
 
