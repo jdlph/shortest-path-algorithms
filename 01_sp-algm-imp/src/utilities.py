@@ -18,8 +18,8 @@ pred_apsp = []
 _dict_nodes = {}
 # global container to store all link objects
 _dict_links = {}
-# map external node id to internal node id
-_map_ext_int = {}
+# map user-defined node id to internal node id
+_map_uid_id = {}
 
 
 def ReadLinks(fileName, delimiter_=','):
@@ -38,11 +38,11 @@ def ReadLinks(fileName, delimiter_=','):
         # internal link id used for calculation
         linkID = 0
         for r in csvf:
-            linkIDEXT = r[0].strip()
-            origNodeID = GetInternalNodeID(int(r[1]))
-            destNodeID = GetInternalNodeID(int(r[2]))
+            linkUID = r[0].strip()
+            origNodeID = GetNodeID(r[1])
+            destNodeID = GetNodeID(r[2])
             linkLen = float(r[3])
-            pLink = Link(linkID, linkIDEXT, origNodeID, destNodeID, linkLen)
+            pLink = Link(linkID, linkUID, origNodeID, destNodeID, linkLen)
             _dict_links[linkID] = pLink
             # update outgoing links from orig node
             _dict_nodes[origNodeID].AddOutgoingLinks(linkID)
@@ -60,7 +60,7 @@ def ReadNodes(fileName, delimiter_=','):
     See CalculateAPSP(method='dij') for details.
     """
     global _dict_nodes
-    global _map_ext_int
+    global _map_uid_id
 
     with open(fileName) as f:
         # skip the header
@@ -69,11 +69,13 @@ def ReadNodes(fileName, delimiter_=','):
         # internal node id used for calculation
         nodeID = 0
         for r in csvf:
-            nodeIDEXT = r[0].strip()
-            if nodeID not in _dict_nodes.keys():
-                _dict_nodes[nodeID] = Node(nodeID, nodeIDEXT)
-            if nodeIDEXT not in _map_ext_int.keys():
-                _map_ext_int[nodeIDEXT] = nodeID
+            # note that nodeUID here is STRING
+            nodeUID = r[0].strip()
+            _dict_nodes[nodeID] = Node(nodeID, nodeUID)
+            if nodeUID not in _map_uid_id.keys():
+                _map_uid_id[nodeUID] = nodeID
+            else:
+                raise Exception('DUPLICATE NODE ID FOUND: '+nodeUID)
             nodeID += 1
     f.close()
 
@@ -99,13 +101,13 @@ def GetLink(linkID):
         return None
 
 
-def GetInternalNodeID(nodeIDEXT):
-    """ get the internal node id given an external node id """
+def GetNodeID(nodeUID):
+    """ get the internal node id given a user-defined node id """
     try:
-        return _map_ext_int[nodeIDEXT]
+        return _map_uid_id[nodeUID]
     except KeyError:
         raise Exception('INCONSISTENCY FOUND between LINK and NODE FILES: '
-                        +'Node '+str(nodeIDEXT)+' NOT EXIST in NODE FILE!!')
+                        +'Node '+str(nodeUID)+' NOT EXIST in NODE FILE!!')
 
 
 def GetNextNodeID(nodes, dist):

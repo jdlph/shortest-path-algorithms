@@ -71,7 +71,7 @@ def CalculateSSSPFIFOII(srcNodeID, numNode, dist, pred):
 
 
 def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
-    """ Deque implementation of MLC using list. Dr. Zhou's approach.
+    """ Deque implementation of MLC using list and Dr. Zhou's approach.
     
     The time complexities of pop(0) and insert(0, x) for built-in list are both 
     O(n), where n is the size of list at run time.
@@ -103,7 +103,7 @@ def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
 
 
 def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred, selist):
-    """ Deque implementation of MLC using deque. Dr. Zhou's approach.
+    """ Deque implementation of MLC using deque and Dr. Zhou's approach.
     
     The computation efficiency can be improve by replacing built-in list with 
     deque as well as the following operations:
