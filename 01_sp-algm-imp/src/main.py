@@ -11,7 +11,7 @@ from spalgm import CalculateAPSP
 def main():
     ReadNodes('01_sp-algm-imp/data/node_chicago.csv')
     ReadLinks('01_sp-algm-imp/data/link_chicago.csv')
-    CalculateAPSP('dij')
+    CalculateAPSP('deq')
 
 
 if __name__=='__main__':

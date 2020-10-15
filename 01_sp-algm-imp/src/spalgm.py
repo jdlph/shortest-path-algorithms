@@ -102,7 +102,7 @@ def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
                     status[j] = 1
 
 
-def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred, selist):
+def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
     """ Deque implementation of MLC using deque and Dr. Zhou's approach.
     
     The computation efficiency can be improve by replacing built-in list with 
@@ -113,8 +113,10 @@ def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred, selist):
     """
     status = [0 for i in range(numNode)]
     dist[srcNodeID] = 0
-    # clear deque for each source node
-    selist.clear()
+    # deque, choose one of the following three
+    selist = collections.deque()
+    # selist = SimpleDequePy(numNode)
+    # selist = SimpleDequeC.deque(numNode)
     selist.append(srcNodeID)
     status[srcNodeID] = 1
     while selist:
@@ -172,7 +174,7 @@ def CalculateSSSPDijkstraI(srcNodeID, numNode, dist, pred):
                     status[j] = True
 
 
-def CalculateSSSPDijkstraII(srcNodeID, dist, pred, selist):
+def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
     """ Minimum Distance Label Implementation using heap 
 
     heappop(h) from heapq involves two operations:
@@ -192,8 +194,9 @@ def CalculateSSSPDijkstraII(srcNodeID, dist, pred, selist):
     implementation.
     """
     dist[srcNodeID] = 0
-    # clear heap for each source node
-    selist.clear()
+    # heap
+    selist = []
+    heapq.heapify(selist)
     heapq.heappush(selist, (dist[srcNodeID], srcNodeID))
     while selist:
         (k, i) = heapq.heappop(selist)
@@ -224,24 +227,17 @@ def CalculateAPSP(method='dij'):
     pred_apsp = [[-1]*numNode for i in range(numNode)]
 
     if not method or method.lower()=='dij':
-        # heap
-        h = []
-        heapq.heapify(h)
         for i in range(numNode):
-            # CalculateSSSPDijkstraI(i, numNode, dist_apsp[i], pred_apsp[i])
-            CalculateSSSPDijkstraII(i, dist_apsp[i], pred_apsp[i], h)
+            CalculateSSSPDijkstraI(i, numNode, dist_apsp[i], pred_apsp[i])
+            # CalculateSSSPDijkstraII(i, dist_apsp[i], pred_apsp[i])
     elif method.lower() == 'deq':
-        # deque
-        deq = collections.deque()
-        # deq = SimpleDequePy(numNode)
-        # deq = SimpleDequeC.deque(numNode)
         for i in range(numNode):
             # CalculateSSSPDEQI(i, numNode, dist_apsp[i], pred_apsp[i])
-            CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i], deq)
+            CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i])
     elif method.lower() == 'fifo':
         for i in range(numNode):
-            # CalculateSSSPFIFOI(i, dist_apsp[i], pred_apsp[i])
-            CalculateSSSPFIFOII(i, numNode, dist_apsp[i], pred_apsp[i])
+            CalculateSSSPFIFOI(i, dist_apsp[i], pred_apsp[i])
+            # CalculateSSSPFIFOII(i, numNode, dist_apsp[i], pred_apsp[i])
     elif method.lower() == 'fw':
         # do nothing
         print("not implemented yet")
