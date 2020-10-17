@@ -48,16 +48,16 @@ def CalculateSSSPFIFOII(srcNodeID, numNode, dist, pred):
     x in s operation for built-in list can be replaced using an 
     indicator/status array. The time complexity is only O(1).
     """
-    status = [False for i in range(numNode)]
+    status = [0 for i in range(numNode)]
     dist[srcNodeID] = 0
     # list
     selist = []
     selist.append(srcNodeID)
-    status[srcNodeID] = True
+    status[srcNodeID] = 1
     # label correcting
     while selist:
         i = selist.pop(0)
-        status[i] = False
+        status[i] = 0
         pNode = GetNode(i)
         for linkIDX in pNode.GetOutgoingLinks():
             pLink = GetLink(linkIDX)
@@ -67,7 +67,7 @@ def CalculateSSSPFIFOII(srcNodeID, numNode, dist, pred):
                 pred[j] = i
                 if not status[j]:
                     selist.append(j)
-                    status[j] = True
+                    status[j] = 1
 
 
 def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
@@ -152,16 +152,16 @@ def CalculateSSSPDijkstraI(srcNodeID, numNode, dist, pred):
     The overall time complexity of these two operations is O(n), where, n is 
     the list size at run time.
     """
-    status = [False for i in range(numNode)]
+    status = [0 for i in range(numNode)]
     dist[srcNodeID] = 0
     # list
     selist = []
     selist.append(srcNodeID)
-    status[srcNodeID] = True
+    status[srcNodeID] = 1
     while selist:
         i = GetNextNodeID(selist, dist)
         selist.remove(i)
-        status[i] = False
+        status[i] = 0
         pNode = GetNode(i)
         for linkIDX in pNode.GetOutgoingLinks():
             pLink = GetLink(linkIDX)
@@ -171,7 +171,7 @@ def CalculateSSSPDijkstraI(srcNodeID, numNode, dist, pred):
                 pred[j] = i
                 if not status[j]:
                     selist.append(j)
-                    status[j] = True
+                    status[j] = 1
 
 
 def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
