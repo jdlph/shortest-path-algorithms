@@ -1,4 +1,4 @@
-# Project on Shortest Path Algorithms
+# Project on Shortest-Path Algorithms
 
 This project is to demonstrate implementations and applications of the shortest-path (SP) algorithms. It will include the following sub-projects.
 
