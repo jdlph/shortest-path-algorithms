@@ -1,8 +1,8 @@
-# Project on Shortest-Path Algorithms
+# Project on Shortest Path Algorithms
 
-This project is to demonstrate implementations and applications of the shortest-path (SP) algorithms. It will include the following sub-projects.
+This project is to demonstrate implementations and applications of the shortest path (SP) algorithms. It will include the following sub-projects,
 
-1. Efficient implementations of shortest-path algorithms through proper data structures;
+1. Efficient implementations of shortest path algorithms through proper data structures;
 2. Parallel implementation of the all-pair shortest-path (APSP) aglorithms;
 3. Implementation of k-shortest-paths (KSP) algorithm (i.e., Yen's algorithm);
 4. Solve Static User Equilibrium (UE) Traffic Assignment Problem using Frank-Wolfe algorithm;
