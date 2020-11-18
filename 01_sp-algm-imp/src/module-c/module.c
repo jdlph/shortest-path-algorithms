@@ -43,17 +43,17 @@ DequeC_init(DequeC *self, PyObject *args, PyObject *kwds)
 static PyObject *
 DequeC_appendleft(DequeC *self, PyObject *nodeID)
 {
-    int _nodeID = _PyLong_AsInt(nodeID);
+    int nodeID_ = _PyLong_AsInt(nodeID);
     if (self->head==-1)
     {
-        self->elem[_nodeID] = -1;
-        self->head = _nodeID;
-        self->tail = _nodeID;
+        self->elem[nodeID_] = -1;
+        self->head = nodeID_;
+        self->tail = nodeID_;
     }
     else
     {
-        self->elem[_nodeID] = self->head;
-        self->head = _nodeID;
+        self->elem[nodeID_] = self->head;
+        self->head = nodeID_;
     }
     Py_RETURN_NONE;
 }
@@ -61,18 +61,18 @@ DequeC_appendleft(DequeC *self, PyObject *nodeID)
 static PyObject *
 DequeC_append(DequeC *self, PyObject *nodeID)
 {
-    int _nodeID = PyLong_AsLong(nodeID);
+    int nodeID_ = PyLong_AsLong(nodeID);
     if (self->head==-1)
     {
-        self->head = _nodeID;
-        self->tail = _nodeID;
-        self->elem[_nodeID] = -1;
+        self->head = nodeID_;
+        self->tail = nodeID_;
+        self->elem[nodeID_] = -1;
     }
     else
     {
-        self->elem[self->tail] = _nodeID;
-        self->elem[_nodeID] = -1;
-        self->tail = _nodeID;
+        self->elem[self->tail] = nodeID_;
+        self->elem[nodeID_] = -1;
+        self->tail = nodeID_;
     }
     Py_RETURN_NONE;
 }
@@ -80,10 +80,10 @@ DequeC_append(DequeC *self, PyObject *nodeID)
 static PyObject *
 DequeC_popleft(DequeC *self)
 {
-    int _left = self->head;
-    self->head = self->elem[_left];
-    self->elem[_left] = -1;
-    return PyLong_FromLong(_left);
+    int left_ = self->head;
+    self->head = self->elem[left_];
+    self->elem[left_] = -1;
+    return PyLong_FromLong(left_);
 }
 
 static int
