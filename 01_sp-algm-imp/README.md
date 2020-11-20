@@ -38,7 +38,7 @@ The first two are well-known as the FIFO (or O(mn)) implementation and the Deque
 
 ## Benchmarks
 
-Table 1 lists all the implementations in this study. For each Python implementation, its equivalent C++ implementation is introduced for benchmarking. vector, deque, and priority_queue from STL (standard Template Library) are C++ counterparts for Python list, deque, and heaq respectively. 
+Table 1 lists all the implementations in this study. For each Python implementation, its equivalent C++ implementation is introduced for benchmarking. vector, deque, and priority_queue from STL (Standard Template Library) are C++ counterparts for Python list, deque, and heaq respectively. 
 
 
 **Table 1** CPU Time Comparisons over Different Implementations
