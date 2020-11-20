@@ -47,14 +47,14 @@ Table 1 lists all the implementations in this study. For each Python implementat
 
     
 
-A moderate real-world network with 933 nodes and 2950 arcs, the Chicago sketch from the latest release of stalite-dtalite ([3]), is adopted as the underlying test network with slight format modifications. Table 1 summaries the CPU times under different implementations.
+A moderate real-world network with 933 nodes and 2950 arcs, the Chicago sketch from the latest release of stalite-dtalite ([3]), is adopted as the underlying test network with slight format modifications. 
 
 
 **Table 2** Test Platform
 
 <img src="./images/test-platform.png" width="600">
 
-We time each implementation for five runs and calculate the average excluding the highest and lowest. One additional run is conducted for Python as the first run of each implementation involves compiling source code to byte code. To get rid of the potential impact from IDE (Integrated Development Environment), the applications are all launched directly using PowerShell from the terminal (while IDEs remain closed). All the information regarding the test platform and tools can be found in Table 2. 
+We time each implementation for five runs and calculate the average excluding the highest and lowest. One additional run is conducted for Python as the first run of each implementation involves compiling source code to byte code. To get rid of the potential impact from IDE (Integrated Development Environment), the applications are all launched directly using PowerShell from the terminal (while IDEs remain closed). Table 1 summaries the CPU times under different implementations. All the information regarding the test platform and tools can be found in Table 2. 
 
 
 ## References
