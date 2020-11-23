@@ -38,7 +38,7 @@ The first two are well-known as the FIFO (or O(mn)) implementation and the Deque
 
 ## Benchmarks
 
-Table 1 lists all the implementations in this study. For each Python implementation, its equivalent C++ implementation is introduced for benchmarking. vector, deque, and priority_queue from STL (Standard Template Library) are C++ counterparts for Python list, deque, and heaq respectively. 
+Table 1 lists all the implementations in this study. For each Python implementation, its equivalent C++ implementation is introduced for benchmarking. vector, deque, and priority_queue from C++ STL (Standard Template Library) are corresponding to Python list, deque, and heapq. 
 
 
 **Table 1** CPU Time Comparisons over Different Implementations
@@ -54,10 +54,10 @@ A moderate real-world network with 933 nodes and 2950 arcs, the Chicago sketch f
 
 <img src="./images/test-platform.png" width="600">
 
-We time each implementation for five runs and calculate the average excluding the highest and lowest. One additional run is conducted for Python as the first run of each implementation involves compiling source code to byte code. To get rid of the potential impact from IDE (Integrated Development Environment), the applications are all launched directly using PowerShell from the terminal (while IDEs remain closed). Table 1 summaries the CPU times under different implementations. All the information regarding the test platform and tools can be found in Table 2. 
+We time each implementation for five runs and calculate the average excluding the highest and lowest. One additional run is conducted for Python as the first run of each implementation involves compiling source code to byte code. Furthermore, to get rid of the potential impact from IDE (Integrated Development Environment), the applications are all launched directly using PowerShell from the terminal (while IDEs remain closed). Table 1 summaries the CPU times under different implementations. All the information regarding the test platform and tools can be found in Table 2. 
 
 
 ## References
 1. R. K. Ahuja, T. L. Magnanti, and J. B. Orlin, Network Flows: Theory, Algorithms, and Applications. Prentice Hall, 1993.
-2. Z. Cui, C. Li, and X. Zhou, “Introduction to Label Correcting Algorithm,” 2020.
+2. Z. Cui, C. Li, and X. Zhou, “Introduction to Label Correcting Algorithms,” 2020.
 3. X. Zhou, “STALite/DTALite/NeXTA Software,” 2020. [Online]. Available: https://github.com/xzhou99/stalite-dtalite_software_release.
