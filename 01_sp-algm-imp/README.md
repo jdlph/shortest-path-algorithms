@@ -27,9 +27,11 @@ The first two are well-known as the FIFO (or O(mn)) implementation and the Deque
 
 **Figure 2** FIFO Implementation of MLC (*Reproduced from [2]*)
 
+
 <img src="./images/pseudo-code_mlc_deque.png" width="600"/>
 
 **Figure 3** Deque Implementation of MLC (*Reproduced from [2]*)
+
 
 <img src="./images/pseudo-code_mlc_dijkstra.png" width="600"/>
 
