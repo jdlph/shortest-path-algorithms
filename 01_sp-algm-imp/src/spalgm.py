@@ -82,6 +82,7 @@ def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
     selist = []
     selist.append(srcNodeID)
     status[srcNodeID] = 1
+    # label correcting
     while selist:
         i = selist.pop(0)
         # 2 indicates the current node p appeared in selist before 
@@ -119,6 +120,7 @@ def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
     # selist = SimpleDequeC.deque(numNode)
     selist.append(srcNodeID)
     status[srcNodeID] = 1
+    # label correcting
     while selist:
         i = selist.popleft()
         # 2 indicates the current node p appeared in selist before 
@@ -158,6 +160,7 @@ def CalculateSSSPDijkstraI(srcNodeID, numNode, dist, pred):
     selist = []
     selist.append(srcNodeID)
     status[srcNodeID] = 1
+    # label correcting
     while selist:
         i = GetNextNodeID(selist, dist)
         selist.remove(i)
@@ -198,6 +201,7 @@ def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
     selist = []
     heapq.heapify(selist)
     heapq.heappush(selist, (dist[srcNodeID], srcNodeID))
+    # label correcting
     while selist:
         (k, i) = heapq.heappop(selist)
         pNode = GetNode(i)
@@ -226,14 +230,14 @@ def CalculateAPSP(method='dij'):
     dist_apsp = [[MAX_LABEL]*numNode for i in range(numNode)]
     pred_apsp = [[-1]*numNode for i in range(numNode)]
 
-    if not method or method.lower()=='dij':
+    if not method or method.lower() == 'dij':
         for i in range(numNode):
             CalculateSSSPDijkstraI(i, numNode, dist_apsp[i], pred_apsp[i])
             # CalculateSSSPDijkstraII(i, dist_apsp[i], pred_apsp[i])
     elif method.lower() == 'deq':
         for i in range(numNode):
-            # CalculateSSSPDEQI(i, numNode, dist_apsp[i], pred_apsp[i])
-            CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i])
+            CalculateSSSPDEQI(i, numNode, dist_apsp[i], pred_apsp[i])
+            #CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i])
     elif method.lower() == 'fifo':
         for i in range(numNode):
             CalculateSSSPFIFOI(i, dist_apsp[i], pred_apsp[i])
