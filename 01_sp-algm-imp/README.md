@@ -58,6 +58,22 @@ A moderate real-world network with 933 nodes and 2950 arcs, the Chicago sketch f
 
 We time each implementation for five runs and calculate the average excluding the highest and lowest. One additional run is conducted for Python as the first run of each implementation involves compiling source code to byte code. Furthermore, to get rid of the potential impact from IDE (Integrated Development Environment), the applications are all launched directly using PowerShell from the terminal (while IDEs remain closed). Table 1 summaries the CPU times under different implementations. All the information regarding the test platform and tools can be found in Table 2. 
 
+### More Discussion on the Deque Implementations in C++
+
+Table 1 reveals one interesting observation from the deque implementations in C++. Adopting deque from STL actually leads to a slightly worse performance compared to the base implementation using vector (0.589s vs. 0.488s). 
+
+The aforementioned worse performance using deque to maintain LIST is directly related to the run-time size growth during the label correcting process. The number of its size update is way more than that of the presence check, which is approximately 1.74 million times for the test network. Therefore, we test the performances of the two deque implementation of the MLC in C++ using different compliers on different operating systems (OS) and list in Table 3 rather than tracing it at run time (which would be tedious and unnecessary for such small performance difference). Note that compiler optimization is not enabled for those runs.
+
+**Table 3** CPU Time Comparisons over Different Compliers and OS for the Deque Implemenations of MLC in C++
+
+<img src="./images/benchmarks_deque-C++.png" width="600">
+
+As shown in Table 3, the performance difference between the two implementations is related to the OS as well. On Linux and macOS, the performances are consistent with the Python counterparts. Although the clang has the most aggressive block size for deque, the deque implementation with deque is still slightly worse than that with vector on Windows. Interestingly, the executable compiled by clang runs slightly faster on WSL2 than on its host OS (i.e., Windows 10) for the deque implementation with deque.
+
+## Furthermore
+
+Even though all the algorithms are implemented towards high efficiency, there is still space for further improvement (e.g., use the intrusive container to store outgoing link of each node for all implementations and replace binary heap with Fibonacci heap, etc.).
+
 
 ## References
 1. R. K. Ahuja, T. L. Magnanti, and J. B. Orlin, Network Flows: Theory, Algorithms, and Applications. Prentice Hall, 1993.
