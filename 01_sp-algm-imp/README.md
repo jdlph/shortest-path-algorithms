@@ -72,7 +72,7 @@ As shown in Table 3, the performance difference between the two implementations 
 
 ## Furthermore
 
-Even though all the algorithms are implemented towards high efficiency, there is still space for further improvement (e.g., use the intrusive container to store outgoing link of each node for all implementations and replace binary heap with Fibonacci heap, etc.).
+Even though all the algorithms are implemented towards high efficiency, there is still space for further improvement. For example, use the intrusive container to store outgoing link of each node for all implementations, add check on scanned nodes in the heap-Dijkstra implementation, and replace binary heap with Fibonacci heap, etc.
 
 
 ## References
