@@ -114,8 +114,8 @@ def GetNextNodeID(nodes, dist):
     NOTE that Negative Distance Label is NOT SUPPORTED in this application.
     """
     # empty dist
-    if not dist:
-        return -1
+    if not nodes:
+        raise Exception('Empty Scan Eligible List!!')
     
     minNodeID = nodes[0]
     min_ = dist[minNodeID]
