@@ -230,19 +230,19 @@ def CalculateAPSP(method='dij'):
     dist_apsp = [[MAX_LABEL]*numNode for i in range(numNode)]
     pred_apsp = [[-1]*numNode for i in range(numNode)]
 
-    if not method or method.lower() == 'dij':
+    if method.lower().startswith('dij'):
         for i in range(numNode):
             CalculateSSSPDijkstraI(i, numNode, dist_apsp[i], pred_apsp[i])
             # CalculateSSSPDijkstraII(i, dist_apsp[i], pred_apsp[i])
-    elif method.lower() == 'deq':
+    elif method.lower().startswith('deq'):
         for i in range(numNode):
             CalculateSSSPDEQI(i, numNode, dist_apsp[i], pred_apsp[i])
             #CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i])
-    elif method.lower() == 'fifo':
+    elif method.lower().startswith('fifo'):
         for i in range(numNode):
             CalculateSSSPFIFOI(i, dist_apsp[i], pred_apsp[i])
             # CalculateSSSPFIFOII(i, numNode, dist_apsp[i], pred_apsp[i])
-    elif method.lower() == 'fw':
+    elif method.lower().startswith('fw'):
         # do nothing
         print("not implemented yet")
     else:

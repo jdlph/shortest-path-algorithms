@@ -47,7 +47,6 @@ def ReadLinks(fileName, delimiter_=','):
             # update outgoing links from orig node
             _dict_nodes[origNodeID].AddOutgoingLinks(linkID)
             linkID += 1
-    f.close()
 
 
 def ReadNodes(fileName, delimiter_=','):
@@ -77,7 +76,6 @@ def ReadNodes(fileName, delimiter_=','):
             else:
                 raise Exception('DUPLICATE NODE ID FOUND: '+nodeUID)
             nodeID += 1
-    f.close()
 
 
 def GetNumNodes():
@@ -115,10 +113,15 @@ def GetNextNodeID(nodes, dist):
     
     NOTE that Negative Distance Label is NOT SUPPORTED in this application.
     """
-    min_ = MAX_LABEL
-    minNodeID = -1
+    # empty dist
+    if not dist:
+        return -1
+    
+    minNodeID = nodes[0]
+    min_ = dist[minNodeID]
     for i in nodes:
         if dist[i] < min_:
             min_ = dist[i]
             minNodeID = i
+    
     return minNodeID

@@ -16,5 +16,5 @@ Some others might include implemenations of heaps suitable for SP algorithms (i.
 Three major goals are made to this project.
 
 1.	**Efficiency**. The examples are implemented towards the running speed required by enterprise-level applications. 
-2.	**Minimum dependency with no compromise on performance**. Only facilities from the Python Standard Library are utilized. No any other third-party libraries. Portability is achieved simultaneously as a result of minimum dependency.
+2.	**Minimum dependency with no compromise on performance**. Only facilities from the Python Standard Library are utilized with no any other third-party libraries. Portability is achieved simultaneously as a result of the minimum dependency.
 3.	**Readability**. Implementations are made as close as the pseudo codes. 

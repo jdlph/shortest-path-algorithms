@@ -66,7 +66,7 @@ The aforementioned worse performance using deque to maintain LIST is directly re
 
 **Table 3** CPU Time Comparisons over Different Compliers and OS for the Deque Implemenations of MLC in C++
 
-<img src="./images/benchmarks_deque-C++.png" width="600">
+<img src="./images/benchmarks_deque-cpp.png" width="600">
 
 As shown in Table 3, the performance difference between the two implementations is related to the OS as well. On Linux and macOS, the performances are consistent with the Python counterparts. Although the clang has the most aggressive block size for deque, the deque implementation with deque is still slightly worse than that with vector on Windows. Interestingly, the executable compiled by clang runs slightly faster on WSL2 than on its host OS (i.e., Windows 10) for the deque implementation with deque.
 
