@@ -9,8 +9,9 @@ from spalgm import CalculateAPSP
 
 
 def main():
-    ReadNodes('01_sp-algm-imp/data/node_chicago.csv')
-    ReadLinks('01_sp-algm-imp/data/link_chicago.csv')
+    # make sure your cwd is shortest-path-problem
+    ReadNodes('data/node_chicago.csv')
+    ReadLinks('data/link_chicago.csv')
     CalculateAPSP('dij')
 
 
