@@ -111,6 +111,8 @@ def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
         1. popleft(),  
         2. appendleft(x).
     Their running times are both O(1).
+
+    See https://github.com/jdlph/Path4GMNS for more effecient implementation
     """
     status = [0 for i in range(numNode)]
     dist[srcNodeID] = 0
@@ -195,6 +197,8 @@ def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
 
     Omitting decrease-key(h, newval, i) WOULD NOT affect the correctness of the
     implementation.
+
+    See https://github.com/jdlph/Path4GMNS for more effecient implementation
     """
     dist[srcNodeID] = 0
     # heap

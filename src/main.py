@@ -9,7 +9,7 @@ from spalgm import CalculateAPSP
 
 
 def main():
-    # make sure your cwd is shortest-path-problem
+    # make sure your cwd is shortest-path-algorithms
     ReadNodes('data/node_chicago.csv')
     ReadLinks('data/link_chicago.csv')
     CalculateAPSP('dij')
