@@ -23,9 +23,9 @@ The MLC algorithm for the single source shortest path (SSSP) problem is given in
 
 The MLC does not specify methods on removing an existing element from LIST and adding a new element to it. In fact, how to maintain and update this list leads to different implementations of the MLC. Three efficient implementations are listed as below.
 
-1. Maintain LIST as a First-In-First-Out (FIFO) queue. Remove the element from front and add the new element to the rear.
-2. Maintain LIST as a double-ended queue (Dequeue). Remove or add an element from either front or rear.
-3. Maintain LIST as any data container (e.g., list in Python). Remove the element with minimum distance label (i.e., arg⁡min⁡{d(i)|∀i∈LIST}) and add the new element to the rear.
+1. Maintain LIST as a First-In-First-Out (FIFO) queue. Remove an element from front and add a new element to rear.
+2. Maintain LIST as a double-ended queue (Dequeue). Remove an element from front and add an element to either front or rear.
+3. Maintain LIST as any data container (e.g., list in Python). Remove the element with minimum distance label (i.e., arg⁡min⁡{d(i)|∀i∈LIST}).
 
 The first two are well-known as the FIFO (or O(mn)) implementation and the Dequeue (or deque) implementation respectively while the last one is essentially the same as Dijkstra's Algorithm. Their psudo codes are shown in Figures 2, 3, and 4.
 

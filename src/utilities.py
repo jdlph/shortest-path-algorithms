@@ -109,19 +109,16 @@ def GetNodeID(nodeUID):
 
 
 def GetNextNodeID(nodes, dist):
-    """ return node ID with the minimum distance label from a set of nodes
-    
-    NOTE that Negative Distance Label is NOT SUPPORTED in this application.
-    """
+    """ return node ID with the minimum distance label from a set of nodes """
     # empty nodes
     if not nodes:
         raise Exception('Empty Scan Eligible List!!')
     
-    minNodeID = nodes[0]
-    min_ = dist[minNodeID]
+    nodeID = nodes[0]
+    min_ = dist[nodeID]
     for i in nodes:
         if dist[i] < min_:
             min_ = dist[i]
-            minNodeID = i
+            nodeID = i
     
-    return minNodeID
+    return nodeID
