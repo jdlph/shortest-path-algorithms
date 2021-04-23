@@ -1,6 +1,6 @@
 """Implemenations of Modified Label Correcting (MLC) Algorithm for
 Single Source Shortest Path Problem (SSSP) including:
-    
+
     1. FIFO
     2. Double-Ended Queue (Deque)
     3. Minimum Distance Label (essentially Dijkstra's Algorithm)
@@ -20,7 +20,7 @@ from utilities import MAX_LABEL, dist_apsp, pred_apsp, \
 
 def CalculateSSSPFIFOI(srcNodeID, dist, pred):
     """ FIFO implementation of MLC using built-in list and x in s operation
-    
+
     The time complexity of x in s operation for built-in list is O(n), where n
     is the size of list at run time.
     """
@@ -32,8 +32,8 @@ def CalculateSSSPFIFOI(srcNodeID, dist, pred):
     while selist:
         i = selist.pop(0)
         pNode = GetNode(i)
-        for linkIDX in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkIDX)
+        for linkID in pNode.GetOutgoingLinks():
+            pLink = GetLink(linkID)
             j = pLink.GetDestNodeID()
             if dist[j] > dist[i] + pLink.GetLen():
                 dist[j] = dist[i] + pLink.GetLen()
@@ -45,10 +45,10 @@ def CalculateSSSPFIFOI(srcNodeID, dist, pred):
 def CalculateSSSPFIFOII(srcNodeID, numNode, dist, pred):
     """ FIFO implementation of MLC using built-in list and indicator array
 
-    x in s operation for built-in list can be replaced using an 
+    x in s operation for built-in list can be replaced using an
     indicator/status array. The time complexity is only O(1).
     """
-    status = [0 for i in range(numNode)]
+    status = [0] * numNode
     dist[srcNodeID] = 0
     # list
     selist = []
@@ -59,8 +59,8 @@ def CalculateSSSPFIFOII(srcNodeID, numNode, dist, pred):
         i = selist.pop(0)
         status[i] = 0
         pNode = GetNode(i)
-        for linkIDX in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkIDX)
+        for linkID in pNode.GetOutgoingLinks():
+            pLink = GetLink(linkID)
             j = pLink.GetDestNodeID()
             if dist[j] > dist[i] + pLink.GetLen():
                 dist[j] = dist[i] + pLink.GetLen()
@@ -72,11 +72,11 @@ def CalculateSSSPFIFOII(srcNodeID, numNode, dist, pred):
 
 def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
     """ Deque implementation of MLC using list and Dr. Zhou's approach.
-    
-    The time complexities of pop(0) and insert(0, x) for built-in list are both 
+
+    The time complexities of pop(0) and insert(0, x) for built-in list are both
     O(n), where n is the size of list at run time.
     """
-    status = [0 for i in range(numNode)]
+    status = [0] * numNode
     dist[srcNodeID] = 0
     # list
     selist = []
@@ -85,12 +85,12 @@ def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
     # label correcting
     while selist:
         i = selist.pop(0)
-        # 2 indicates the current node p appeared in selist before 
+        # 2 indicates the current node p appeared in selist before
         # but is no longer in it.
         status[i] = 2
         pNode = GetNode(i)
-        for linkIDX in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkIDX)
+        for linkID in pNode.GetOutgoingLinks():
+            pLink = GetLink(linkID)
             j = pLink.GetDestNodeID()
             if dist[j] > dist[i] + pLink.GetLen():
                 dist[j] = dist[i] + pLink.GetLen()
@@ -105,16 +105,16 @@ def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
 
 def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
     """ Deque implementation of MLC using deque and Dr. Zhou's approach.
-    
-    The computation efficiency can be improve by replacing built-in list with 
+
+    The computation efficiency can be improve by replacing built-in list with
     deque as well as the following operations:
-        1. popleft(),  
+        1. popleft(),
         2. appendleft(x).
     Their running times are both O(1).
 
     See https://github.com/jdlph/Path4GMNS for more effecient implementation
     """
-    status = [0 for i in range(numNode)]
+    status = [0] * numNode
     dist[srcNodeID] = 0
     # deque, choose one of the following three
     selist = collections.deque()
@@ -125,12 +125,12 @@ def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
     # label correcting
     while selist:
         i = selist.popleft()
-        # 2 indicates the current node p appeared in selist before 
+        # 2 indicates the current node p appeared in selist before
         # but is no longer in it.
         status[i] = 2
         pNode = GetNode(i)
-        for linkIDX in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkIDX)
+        for linkID in pNode.GetOutgoingLinks():
+            pLink = GetLink(linkID)
             j = pLink.GetDestNodeID()
             if dist[j] > dist[i] + pLink.GetLen():
                 dist[j] = dist[i] + pLink.GetLen()
@@ -140,23 +140,23 @@ def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
                         selist.appendleft(j)
                     else:
                         selist.append(j)
-                    status[j] = 1                      
+                    status[j] = 1
 
 
 def CalculateSSSPDijkstraI(srcNodeID, numNode, dist, pred):
     """ Minimum Distance Label Implementation without heap
 
-    There are two major operations with this implementation: 
+    There are two major operations with this implementation:
         1. Find the node with the minimum distance label from the scan eligible
-           list by looping through all the nodes in this list, which takes O(n) 
+           list by looping through all the nodes in this list, which takes O(n)
            time;
-        2. Remove this node from list by the built-in remove() operation, which 
+        2. Remove this node from list by the built-in remove() operation, which
            takes O(n) time as well.
-        
-    The overall time complexity of these two operations is O(n), where, n is 
+
+    The overall time complexity of these two operations is O(n), where, n is
     the list size at run time.
     """
-    status = [0 for i in range(numNode)]
+    status = [0] * numNode
     dist[srcNodeID] = 0
     # list
     selist = []
@@ -168,8 +168,8 @@ def CalculateSSSPDijkstraI(srcNodeID, numNode, dist, pred):
         selist.remove(i)
         status[i] = 0
         pNode = GetNode(i)
-        for linkIDX in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkIDX)
+        for linkID in pNode.GetOutgoingLinks():
+            pLink = GetLink(linkID)
             j = pLink.GetDestNodeID()
             if dist[j] > dist[i] + pLink.GetLen():
                 dist[j] = dist[i] + pLink.GetLen()
@@ -180,17 +180,17 @@ def CalculateSSSPDijkstraI(srcNodeID, numNode, dist, pred):
 
 
 def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
-    """ Minimum Distance Label Implementation using heap 
+    """ Minimum Distance Label Implementation using heap
 
     heappop(h) from heapq involves two operations:
         1. Find the object with the minimum key from heap h;
         2. Delete the object with the minimum key from heap h.
 
-    As h is a binary heap, the two operations require O(1) time and O(logn) 
+    As h is a binary heap, the two operations require O(1) time and O(logn)
     time respectively. The overall time complexity of these two operations is
     O(logn) compared to O(n) in the implementation without heap.
-    
-    NOTE that this implementation is DIFFERENT with the standard heap 
+
+    NOTE that this implementation is DIFFERENT with the standard heap
     implementation of Dijkstra's Algorithm as there is no
     decrease-key(h, newval, i) in heaqp from Python STL to reduce the key of an
     object i from its current value to newval.
@@ -209,8 +209,8 @@ def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
     while selist:
         (k, i) = heapq.heappop(selist)
         pNode = GetNode(i)
-        for linkIDX in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkIDX)
+        for linkID in pNode.GetOutgoingLinks():
+            pLink = GetLink(linkID)
             j = pLink.GetDestNodeID()
             if dist[j] > k + pLink.GetLen():
                 dist[j] = k + pLink.GetLen()
@@ -223,16 +223,19 @@ def CalculateAPSP(method='dij'):
 
     Please choose one of the three implementations: fifo, deq, dij.
 
-    All pair shortest paths can be calculated by: 
+    All pair shortest paths can be calculated by:
         1. repeated Single-Source Shortest Path Algorithms
         2. Floyd-Warshall Algorithm
     """
     st = time()
 
     # initialization
+    global dist_apsp
+    global pred_apsp
+
     numNode = GetNumNodes()
-    dist_apsp = [[MAX_LABEL]*numNode for i in range(numNode)]
-    pred_apsp = [[-1]*numNode for i in range(numNode)]
+    dist_apsp = [[MAX_LABEL]*numNode for _ in range(numNode)]
+    pred_apsp = [[-1]*numNode for _ in range(numNode)]
 
     if method.lower().startswith('dij'):
         for i in range(numNode):
@@ -252,5 +255,5 @@ def CalculateAPSP(method='dij'):
     else:
         raise Exception('Please choose correct shortest path algorithm: '
                         +'dij; deq; fifo; fw.')
-    
+
     print('Processing time for SPP\t: {0: .2f}'.format(time() - st)+' s.')

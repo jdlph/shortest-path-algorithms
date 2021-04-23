@@ -24,13 +24,13 @@ _map_uid_id = {}
 
 def ReadLinks(fileName, delimiter_=','):
     """ read link input file and set up link objects.
-    
-    This function will automatically create an internal link id for each link. 
+
+    This function will automatically create an internal link id for each link.
     Internal link IDs are consecutive non-negative integers starting from 0.
     """
     global _dict_links
     global _dict_nodes
-    
+
     with open(fileName) as f:
         # skip the header
         next(f)
@@ -51,11 +51,11 @@ def ReadLinks(fileName, delimiter_=','):
 
 def ReadNodes(fileName, delimiter_=','):
     """ read node input file and set up node objects.
-    
-    This function will automatically create an internal node ID for each node. 
-    Internal node IDs are consecutive non-negative integers starting from 0 as 
-    required by initializations of dist_apsp and pred_apsp. 
-    
+
+    This function will automatically create an internal node ID for each node.
+    Internal node IDs are consecutive non-negative integers starting from 0 as
+    required by initializations of dist_apsp and pred_apsp.
+
     See CalculateAPSP(method='dij') for details.
     """
     global _dict_nodes
@@ -81,7 +81,7 @@ def ReadNodes(fileName, delimiter_=','):
 def GetNumNodes():
     """ return the number of nodes on the current network """
     return len(_dict_nodes.keys())
-    
+
 
 def GetNode(nodeID):
     """ get the corresponding node object given internal nodeID """
@@ -113,12 +113,12 @@ def GetNextNodeID(nodes, dist):
     # empty nodes
     if not nodes:
         raise Exception('Empty Scan Eligible List!!')
-    
+
     nodeID = nodes[0]
     min_ = dist[nodeID]
     for i in nodes:
         if dist[i] < min_:
             min_ = dist[i]
             nodeID = i
-    
+
     return nodeID
