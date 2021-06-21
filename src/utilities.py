@@ -28,9 +28,6 @@ def ReadLinks(fileName, delimiter_=','):
     This function will automatically create an internal link id for each link.
     Internal link IDs are consecutive non-negative integers starting from 0.
     """
-    global _dict_links
-    global _dict_nodes
-
     with open(fileName) as f:
         # skip the header
         next(f)
@@ -58,9 +55,6 @@ def ReadNodes(fileName, delimiter_=','):
 
     See CalculateAPSP(method='dij') for details.
     """
-    global _dict_nodes
-    global _map_uid_id
-
     with open(fileName) as f:
         # skip the header
         next(f)
