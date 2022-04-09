@@ -4,7 +4,7 @@
 """
 
 
-from utilities import ReadLinks, ReadNodes
+from utils import ReadLinks, ReadNodes
 from spalgm import CalculateAPSP
 
 

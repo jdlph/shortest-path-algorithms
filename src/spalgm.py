@@ -1,4 +1,4 @@
-"""Implemenations of Modified Label Correcting (MLC) Algorithm for
+"""Implementations of Modified Label Correcting (MLC) Algorithm for
 Single Source Shortest Path Problem (SSSP) including:
 
     1. FIFO
@@ -12,10 +12,11 @@ Single Source Shortest Path Problem (SSSP) including:
 from time import time
 import heapq
 import collections
+
 import SimpleDequeC
 from classes import SimpleDequePy
-from utilities import MAX_LABEL, dist_apsp, pred_apsp, \
-                      GetNode, GetLink, GetNextNodeID, GetNumNodes
+from utils import MAX_LABEL, dist_apsp, pred_apsp, \
+                  GetNode, GetLink, GetNextNodeID, GetNumNodes
 
 
 def CalculateSSSPFIFOI(srcNodeID, dist, pred):
@@ -112,7 +113,7 @@ def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
         2. appendleft(x).
     Their running times are both O(1).
 
-    See https://github.com/jdlph/Path4GMNS for more effecient implementation
+    See https://github.com/jdlph/Path4GMNS for more efficient implementation
     """
     status = [0] * numNode
     dist[srcNodeID] = 0
@@ -198,7 +199,7 @@ def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
     Omitting decrease-key(h, newval, i) WOULD NOT affect the correctness of the
     implementation.
 
-    See https://github.com/jdlph/Path4GMNS for more effecient implementation
+    See https://github.com/jdlph/Path4GMNS for more efficient implementation
     """
     dist[srcNodeID] = 0
     # heap
@@ -219,7 +220,7 @@ def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
 
 
 def CalculateAPSP(method='dij'):
-    """ All Pair Shortest Path (APSP) Algorithms.
+    """ All Pair Shortest Paths (APSP) Algorithms.
 
     Please choose one of the three implementations: fifo, deq, dij.
 

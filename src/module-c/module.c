@@ -1,4 +1,4 @@
-/* 
+/*
 special implemenation of deque using array in C with C/C++ extension modules for CPython
 
 07/24/20, Peiheng Li (jdlph@hotmail.com)
@@ -130,7 +130,7 @@ static PyMethodDef DequeC_methods[] = {
 };
 
 static PyTypeObject ClassyType = {
-    PyVarObject_HEAD_INIT(NULL, 0) 
+    PyVarObject_HEAD_INIT(NULL, 0)
     "DequeC",                                 /* tp_name */
     sizeof(DequeC),                           /* tp_basicsize */
     0,                                        /* tp_itemsize */

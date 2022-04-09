@@ -46,7 +46,7 @@ class Link:
 
 
 class SimpleDequePy:
-    """ Special implemenation of deque using fix-length array
+    """ Special implementation of deque using fix-length array
 
     the interface utilized for shortest-path algorithms is exactly the same as
     the built-in deque.
