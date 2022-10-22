@@ -32,12 +32,12 @@ def CalculateSSSPFIFOI(srcNodeID, dist, pred):
     # label correcting
     while selist:
         i = selist.pop(0)
-        pNode = GetNode(i)
-        for linkID in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkID)
-            j = pLink.GetDestNodeID()
-            if dist[j] > dist[i] + pLink.GetLen():
-                dist[j] = dist[i] + pLink.GetLen()
+        node = GetNode(i)
+        for linkID in node.GetOutgoingLinks():
+            link = GetLink(linkID)
+            j = link.GetDestNodeID()
+            if dist[j] > dist[i] + link.GetLen():
+                dist[j] = dist[i] + link.GetLen()
                 pred[j] = i
                 if j not in selist:
                     selist.append(j)
@@ -59,12 +59,12 @@ def CalculateSSSPFIFOII(srcNodeID, numNode, dist, pred):
     while selist:
         i = selist.pop(0)
         status[i] = 0
-        pNode = GetNode(i)
-        for linkID in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkID)
-            j = pLink.GetDestNodeID()
-            if dist[j] > dist[i] + pLink.GetLen():
-                dist[j] = dist[i] + pLink.GetLen()
+        node = GetNode(i)
+        for linkID in node.GetOutgoingLinks():
+            link = GetLink(linkID)
+            j = link.GetDestNodeID()
+            if dist[j] > dist[i] + link.GetLen():
+                dist[j] = dist[i] + link.GetLen()
                 pred[j] = i
                 if not status[j]:
                     selist.append(j)
@@ -89,12 +89,12 @@ def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
         # 2 indicates the current node p appeared in selist before
         # but is no longer in it.
         status[i] = 2
-        pNode = GetNode(i)
-        for linkID in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkID)
-            j = pLink.GetDestNodeID()
-            if dist[j] > dist[i] + pLink.GetLen():
-                dist[j] = dist[i] + pLink.GetLen()
+        node = GetNode(i)
+        for linkID in node.GetOutgoingLinks():
+            link = GetLink(linkID)
+            j = link.GetDestNodeID()
+            if dist[j] > dist[i] + link.GetLen():
+                dist[j] = dist[i] + link.GetLen()
                 pred[j] = i
                 if status[j] != 1:
                     if status[j] == 2:
@@ -129,12 +129,12 @@ def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
         # 2 indicates the current node p appeared in selist before
         # but is no longer in it.
         status[i] = 2
-        pNode = GetNode(i)
-        for linkID in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkID)
-            j = pLink.GetDestNodeID()
-            if dist[j] > dist[i] + pLink.GetLen():
-                dist[j] = dist[i] + pLink.GetLen()
+        node = GetNode(i)
+        for linkID in node.GetOutgoingLinks():
+            link = GetLink(linkID)
+            j = link.GetDestNodeID()
+            if dist[j] > dist[i] + link.GetLen():
+                dist[j] = dist[i] + link.GetLen()
                 pred[j] = i
                 if status[j] != 1:
                     if status[j] == 2:
@@ -168,12 +168,12 @@ def CalculateSSSPDijkstraI(srcNodeID, numNode, dist, pred):
         i = GetNextNodeID(selist, dist)
         selist.remove(i)
         status[i] = 0
-        pNode = GetNode(i)
-        for linkID in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkID)
-            j = pLink.GetDestNodeID()
-            if dist[j] > dist[i] + pLink.GetLen():
-                dist[j] = dist[i] + pLink.GetLen()
+        node = GetNode(i)
+        for linkID in node.GetOutgoingLinks():
+            link = GetLink(linkID)
+            j = link.GetDestNodeID()
+            if dist[j] > dist[i] + link.GetLen():
+                dist[j] = dist[i] + link.GetLen()
                 pred[j] = i
                 if not status[j]:
                     selist.append(j)
@@ -209,12 +209,12 @@ def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
     # label correcting
     while selist:
         (k, i) = heapq.heappop(selist)
-        pNode = GetNode(i)
-        for linkID in pNode.GetOutgoingLinks():
-            pLink = GetLink(linkID)
-            j = pLink.GetDestNodeID()
-            if dist[j] > k + pLink.GetLen():
-                dist[j] = k + pLink.GetLen()
+        node = GetNode(i)
+        for linkID in node.GetOutgoingLinks():
+            link = GetLink(linkID)
+            j = link.GetDestNodeID()
+            if dist[j] > k + link.GetLen():
+                dist[j] = k + link.GetLen()
                 pred[j] = i
                 heapq.heappush(selist, (dist[j], j))
 
