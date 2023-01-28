@@ -53,7 +53,7 @@ class SimpleDequePy:
     """
 
     def __init__(self, size_):
-        self.nodes = [-1 for i in range(size_)]
+        self.nodes = [-1] * size_
         self.head = -1
         self.tail = -1
 
@@ -102,7 +102,7 @@ class SpecialDequePy:
     """
 
     def __init__(self, size_):
-        self.nodes = [-1 for i in range(size_)]
+        self.nodes = [-1] * size_
         self.head = -1
         self.tail = -1
 
@@ -132,16 +132,10 @@ class SpecialDequePy:
         self.nodes[left] = -3
         return left
 
-    def has_node(self, nodeID):
-        if self.nodes[nodeID] >= 0:
-            return True
+    def newnode(self, nodeID):
+        return self.nodes[nodeID] == -1 and nodeID != self.head
 
-        if nodeID == self.head and self.nodes[nodeID] == -1:
-            return True
-
-        return False
-
-    def had_node(self, nodeID):
+    def pastnode(self, nodeID):
         return self.nodes[nodeID] == -3
 
     def clear(self):

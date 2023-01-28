@@ -96,12 +96,13 @@ def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
             if dist[j] > dist[i] + link.GetLen():
                 dist[j] = dist[i] + link.GetLen()
                 pred[j] = i
-                if status[j] != 1:
-                    if status[j] == 2:
-                        selist.insert(0, j)
-                    else:
-                        selist.append(j)
+                if status[j] == 2:
+                    selist.insert(0, j)
                     status[j] = 1
+                elif status[j] == 0:
+                    selist.append(j)
+                    status[j] = 1
+
 
 
 def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
@@ -136,18 +137,18 @@ def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
             if dist[j] > dist[i] + link.GetLen():
                 dist[j] = dist[i] + link.GetLen()
                 pred[j] = i
-                if status[j] != 1:
-                    if status[j] == 2:
-                        selist.appendleft(j)
-                    else:
-                        selist.append(j)
+                if status[j] == 2:
+                    selist.appendleft(j)
+                    status[j] = 1
+                elif status[j] == 0:
+                    selist.append(j)
                     status[j] = 1
 
 
 def CalculateSSSPDEQIII(srcNodeID, numNode, dist, pred):
     """ Deque implementation of MLC using deque without status array
 
-    It is equivalent to shortest_path_n() in 
+    It is equivalent to shortest_path_n() in
     https://github.com/jdlph/Path4GMNS/blob/dev/engine/path_engine.cpp
     """
     dist[srcNodeID] = 0
@@ -157,8 +158,6 @@ def CalculateSSSPDEQIII(srcNodeID, numNode, dist, pred):
     # label correcting
     while selist:
         i = selist.popleft()
-        # 2 indicates the current node p appeared in selist before
-        # but is no longer in it.
         node = GetNode(i)
         for linkID in node.GetOutgoingLinks():
             link = GetLink(linkID)
@@ -166,9 +165,9 @@ def CalculateSSSPDEQIII(srcNodeID, numNode, dist, pred):
             if dist[j] > dist[i] + link.GetLen():
                 dist[j] = dist[i] + link.GetLen()
                 pred[j] = i
-                if selist.had_node(j):
+                if selist.pastnode(j):
                     selist.appendleft(j)
-                elif not selist.has_node(j):
+                elif selist.newnode(j):
                     selist.append(j)
 
 
@@ -273,8 +272,8 @@ def CalculateAPSP(method='deq'):
     elif method.lower().startswith('deq'):
         for i in range(numNode):
             # CalculateSSSPDEQI(i, numNode, dist_apsp[i], pred_apsp[i])
-            # CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i])
-            CalculateSSSPDEQIII(i, numNode, dist_apsp[i], pred_apsp[i])
+            CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i])
+            # CalculateSSSPDEQIII(i, numNode, dist_apsp[i], pred_apsp[i])
     elif method.lower().startswith('fifo'):
         for i in range(numNode):
             CalculateSSSPFIFOI(i, dist_apsp[i], pred_apsp[i])
