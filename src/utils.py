@@ -5,11 +5,12 @@
 
 
 import csv
+from sys import maxsize
 from classes import Link, Node
 
 
 # maximum or infinite number used to initialize distance labels
-MAX_LABEL = 9999
+MAX_LABEL = maxsize
 # distance labels for APSP
 dist_apsp = []
 # predecessors for APSP

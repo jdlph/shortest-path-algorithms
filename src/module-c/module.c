@@ -44,17 +44,12 @@ static PyObject *
 DequeC_appendleft(DequeC *self, PyObject *nodeID)
 {
     int nodeID_ = _PyLong_AsInt(nodeID);
+    self->elem[nodeID_] = self->head;
+    self->head = nodeID_;
+
     if (self->head==-1)
-    {
-        self->elem[nodeID_] = -1;
-        self->head = nodeID_;
         self->tail = nodeID_;
-    }
-    else
-    {
-        self->elem[nodeID_] = self->head;
-        self->head = nodeID_;
-    }
+
     Py_RETURN_NONE;
 }
 
