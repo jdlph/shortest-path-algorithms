@@ -61,13 +61,11 @@ class SimpleDequePy:
         return self.head != -1
 
     def appendleft(self, nodeID):
+        self.nodes[nodeID] = self.head
+        self.head = nodeID
+
         if self.head == -1:
-            self.nodes[nodeID] = -1
-            self.head = nodeID
             self.tail = nodeID
-        else:
-            self.nodes[nodeID] = self.head
-            self.head = nodeID
 
     def append(self, nodeID):
         if self.head == -1:
