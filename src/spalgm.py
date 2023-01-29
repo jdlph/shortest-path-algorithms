@@ -104,7 +104,6 @@ def CalculateSSSPDEQI(srcNodeID, numNode, dist, pred):
                     status[j] = 1
 
 
-
 def CalculateSSSPDEQII(srcNodeID, numNode, dist, pred):
     """ Deque implementation of MLC using deque and Dr. Zhou's approach.
 
@@ -246,7 +245,7 @@ def CalculateSSSPDijkstraII(srcNodeID, dist, pred):
                 heapq.heappush(selist, (dist[j], j))
 
 
-def CalculateAPSP(method='deq'):
+def CalculateAPSP(method='dij'):
     """ All Pair Shortest Paths (APSP) Algorithms.
 
     Please choose one of the three implementations: fifo, deq, dij.
@@ -272,8 +271,8 @@ def CalculateAPSP(method='deq'):
     elif method.lower().startswith('deq'):
         for i in range(numNode):
             # CalculateSSSPDEQI(i, numNode, dist_apsp[i], pred_apsp[i])
-            CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i])
-            # CalculateSSSPDEQIII(i, numNode, dist_apsp[i], pred_apsp[i])
+            # CalculateSSSPDEQII(i, numNode, dist_apsp[i], pred_apsp[i])
+            CalculateSSSPDEQIII(i, numNode, dist_apsp[i], pred_apsp[i])
     elif method.lower().startswith('fifo'):
         for i in range(numNode):
             CalculateSSSPFIFOI(i, dist_apsp[i], pred_apsp[i])

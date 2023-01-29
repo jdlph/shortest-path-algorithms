@@ -12,7 +12,7 @@ def main():
     # make sure your cwd is shortest-path-algorithms
     ReadNodes('data/node_chicago.csv')
     ReadLinks('data/link_chicago.csv')
-    CalculateAPSP('dij')
+    CalculateAPSP('deq')
 
 
 if __name__=='__main__':
