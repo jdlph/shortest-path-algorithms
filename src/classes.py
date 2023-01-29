@@ -93,9 +93,9 @@ class SpecialDequePy:
     Compared to SimpleDequePy, it supports the following three checks needed for
     the deque implementation of the MLC algorithm.
 
-    1. a node was in deque before (self.nodes[nodeID] = -3);
+    1. a node was in deque before (self.nodes[nodeID] == -3);
     2. a node is not in deque, and was not there before (self.nodes[nodeID] == -1
-       and nodeID != self.head).
+       and nodeID != self.tail).
     3. a node is in deque (otherwise);
 
     See https://github.com/jdlph/Path4GMNS/blob/dev/engine/path_engine.cpp for

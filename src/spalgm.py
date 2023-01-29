@@ -149,6 +149,10 @@ def CalculateSSSPDEQIII(srcNodeID, numNode, dist, pred):
 
     It is equivalent to shortest_path_n() in
     https://github.com/jdlph/Path4GMNS/blob/dev/engine/path_engine.cpp
+
+    It is a little bit slower than CalculateSSSPDEQII() using SimpleDequePy.
+    For their C++ counterparts, CalculateSSSPDEQIII() outperforms
+    CalculateSSSPDEQII() by a 1% margin.
     """
     dist[srcNodeID] = 0
     # deque
@@ -266,8 +270,8 @@ def CalculateAPSP(method='dij'):
 
     if method.lower().startswith('dij'):
         for i in range(numNode):
-            CalculateSSSPDijkstraI(i, numNode, dist_apsp[i], pred_apsp[i])
-            # CalculateSSSPDijkstraII(i, dist_apsp[i], pred_apsp[i])
+            # CalculateSSSPDijkstraI(i, numNode, dist_apsp[i], pred_apsp[i])
+            CalculateSSSPDijkstraII(i, dist_apsp[i], pred_apsp[i])
     elif method.lower().startswith('deq'):
         for i in range(numNode):
             # CalculateSSSPDEQI(i, numNode, dist_apsp[i], pred_apsp[i])
